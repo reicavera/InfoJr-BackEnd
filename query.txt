@@ -1,0 +1,30 @@
+create database atividade8;
+use atividade8;
+create table readers(
+id int not null auto_increment,
+readerName varchar(255) not null,
+email varchar(255) not null unique,
+primary key(id)
+);
+create table authors(
+id int not null auto_increment,
+authorName varchar(255) not null,
+email varchar(255) not null unique,
+primary key(id)
+);
+create table posts(
+id int not null auto_increment,
+title varchar(255) not null,
+content varchar(255) not null,
+authorId int not null,
+primary key(id),
+foreign key (authorId) references authors(id)
+);
+create table follow(
+id int not null auto_increment,
+readerEmail varchar(255) not null,
+authorId int not null,
+primary key(id),
+foreign key (readerEmail) references readers(email),
+foreign key (authorId) references authors(id)
+);
